@@ -1,6 +1,7 @@
 import { SavedTrack } from 'spotify-types';
 
-const apiToken = 'BQAi0GgIP2k2oMN-ubdqXF91yxHkg7QDKXx-yX9rVV93qMJh1IMFfYv2TH8DxkfPQAB9Mt86Bqw0sUdooswM8vrbgp5ZiLvrfKAEjW3Wp-HL2iR6TMf3Mw2_t6FmVzPg_i1hpOzGRXtDa2vufNmNspW7RmGHoPag7b_LVFdm4mPR771s21Fhe1BXefWGlqNcvq1bZGGeUnApaY5qOO1CITirNlkJOTE-pLLUUNHuRDyKV2fFkfkUrsYRYwEUOSKrMZ1kXpZdmADRp0dcCEot3lyR_hWZF6nbFpyrO4aaA_HwFY6yJtTzgLgsCDY0Mr8iWkpwxyt4Q5i0Vig20-uqZhdcvz4fQKAImJJgvqff7oSBzaY';
+const apiToken =
+  'BQAAL_kN0h4zqgRgqGGOwVOOCSDt5J2KaPPC5JDe9QWTWTljoDKX2ffFyHW16hmvTuFKu3Bw0kgXY-BEFzRt-tb2Xmf9d5ze6MDRVf0KuY8nzm4E4WQAjbak9w1opncvDRRvY5K_VosDUXFn0oRqtgQ8GSsqK0sQE0IYHOR53ffJoziJxMsGCEh5OR877cpzQc8x5FBjT6crDejM49d_3hYWYCoK2Hli1rQAP1z9CrmdTbCuFbVCEdNoD8Q_c_5a9sYoemfSNstQB-76F7IYXXj577MU2UbSolHjpmnHzbt9Guqzu1tPIIQ2QM0H7KJrshWil_A_gqNoo6MtznEFSj13l_sfFL3tDLVT6Y2Qr7dXng8';
 
 export const fetchTracks = async () => {
   const response = await fetch('https://api.spotify.com/v1/me/tracks', {
@@ -10,9 +11,9 @@ export const fetchTracks = async () => {
     },
   });
   if (!response.ok) {
-     throw new Error(`Fetching tracks failed with status ${response.status}`)
-   }
-  const data = await response.json() as { items: SavedTrack[] };
+    throw new Error(`Fetching tracks failed with status ${response.status}`);
+  }
+  const data = (await response.json()) as { items: SavedTrack[] };
 
   return data.items;
 };

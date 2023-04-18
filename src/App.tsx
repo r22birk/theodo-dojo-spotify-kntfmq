@@ -19,7 +19,7 @@ const App = () => {
     setTrackIndex(trackIndex + 1);
   }
 
-  const { data: tracks } = useQuery({
+  const { data: tracks, isLoading } = useQuery({
       queryKey: ['tracks'],
       queryFn: fetchTracks
   });
@@ -33,8 +33,8 @@ const App = () => {
         <h1 className="App-title">Bienvenue sur le blind test</h1>
       </header>
       <div className="App-images">
-        <audio src={trackUrls[trackIndex]} autoPlay controls />
-        <p>{tracks[0]?.track.name}</p>
+        <audio src={tracks[trackIndex]?.track.preview_url} autoPlay controls />
+        <p>{isLoading ? "Loading..." : tracks[trackIndex]?.track.name}</p>
       </div>
       <div className="App-buttons">
         <button onClick={goToNextTrack}>
