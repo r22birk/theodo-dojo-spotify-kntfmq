@@ -24,6 +24,8 @@ const App = () => {
       queryFn: fetchTracks
   });
 
+  const currentTrack = tracks?.[trackIndex];
+
   console.log(tracks?.length);
 
   return (
@@ -35,8 +37,9 @@ const App = () => {
       <div className="App-images">
         {isLoading ? <p>Loading...</p> : 
         <>
-          <audio src={tracks[trackIndex]?.track.preview_url} autoPlay controls />
-          <p>{tracks[trackIndex]?.track.name}</p>
+          <audio src={currentTrack?.track.preview_url} autoPlay controls />
+          <p><AlbumCover track={currentTrack} /></p>
+          <p>{currentTrack?.track.name}</p>
         </>
         }
       </div>
@@ -48,5 +51,12 @@ const App = () => {
     </div>
   );
 };
+
+const AlbumCover = ({ track }) =>  {
+  const src = track.track.album.images[0].url; // A changer ;)
+  return (
+      <img src={src} style={{ width: 400, height: 400 }} />
+  );
+}
 
 export default App;
