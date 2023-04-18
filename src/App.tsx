@@ -34,11 +34,13 @@ const App = () => {
       </header>
       <div className="App-images">
         <audio src={trackUrls[trackIndex]} autoPlay controls />
+        <p>{tracks[0]?.track.name}</p>
+      </div>
+      <div className="App-buttons">
         <button onClick={goToNextTrack}>
             Next track
         </button>
       </div>
-      <div className="App-buttons"></div>
     </div>
   );
 };
