@@ -24,7 +24,7 @@ const App = () => {
       queryFn: fetchTracks
   });
 
-  console.log(tracks);
+  console.log(tracks?.length);
 
   return (
     <div className="App">
