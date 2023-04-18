@@ -33,8 +33,12 @@ const App = () => {
         <h1 className="App-title">Bienvenue sur le blind test</h1>
       </header>
       <div className="App-images">
-        <audio src={tracks[trackIndex]?.track.preview_url} autoPlay controls />
-        <p>{isLoading ? "Loading..." : tracks[trackIndex]?.track.name}</p>
+        {isLoading ? <p>Loading...</p> : 
+        <>
+          <audio src={tracks[trackIndex]?.track.preview_url} autoPlay controls />
+          <p>{tracks[trackIndex]?.track.name}</p>
+        </>
+        }
       </div>
       <div className="App-buttons">
         <button onClick={goToNextTrack}>
