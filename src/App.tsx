@@ -1,6 +1,6 @@
 import logo from './assets/logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTracks } from './lib/fetchTracks';
 import swal from 'sweetalert';
@@ -26,19 +26,28 @@ const App = () => {
   });
 
   const currentTrack = tracks?.[trackIndex];
-  const track1 = tracks?.[0];
-  const track2 = tracks?.[1];
-  const track3 = tracks?.[2];
 
   console.log(tracks?.length);
 
-  const checkAnswer = id => {
+  const checkAnswer = (id: number) => {
     if (id == trackIndex) {
       swal('Bravo', 'Sous-titre', 'success');
     } else {
       swal('Alerte !!', 'Ceci est une alerte', 'error');
     }
   };
+
+  const choices = Array.from({ length: 3 }, () =>
+    Math.floor(Math.random() * tracks?.length!),
+  );
+
+  const track1 = tracks?.[choices[0]!];
+  const track2 = tracks?.[choices[1]!];
+  const track3 = tracks?.[choices[2]!];
+
+  useEffect(() => {
+    setTrackIndex(choices?.[Math.floor(Math.random() * 3)]!);
+  });
 
   return (
     <div className="App">
@@ -60,9 +69,15 @@ const App = () => {
         )}
       </div>
       <div className="App-buttons">
-        <button onClick={() => checkAnswer(0)}>{track1?.track.name}</button>
-        <button onClick={() => checkAnswer(1)}>{track2?.track.name}</button>
-        <button onClick={() => checkAnswer(2)}>{track3?.track.name}</button>
+        <button onClick={() => checkAnswer(choices?.[0]!)}>
+          {track1?.track.name}
+        </button>
+        <button onClick={() => checkAnswer(choices?.[1]!)}>
+          {track2?.track.name}
+        </button>
+        <button onClick={() => checkAnswer(choices?.[2]!)}>
+          {track3?.track.name}
+        </button>
       </div>
     </div>
   );
