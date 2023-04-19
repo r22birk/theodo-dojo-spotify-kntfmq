@@ -25,6 +25,9 @@ const App = () => {
   });
 
   const currentTrack = tracks?.[trackIndex];
+  const track1 = tracks?.[0];
+  const track2 = tracks?.[1];
+  const track3 = tracks?.[2];
 
   console.log(tracks?.length);
 
@@ -44,9 +47,9 @@ const App = () => {
         }
       </div>
       <div className="App-buttons">
-        <button onClick={goToNextTrack}>
-            Next track
-        </button>
+        <button>{track1?.track.name}</button>
+        <button>{track2?.track.name}</button>
+        <button>{track3?.track.name}</button>
       </div>
     </div>
   );
