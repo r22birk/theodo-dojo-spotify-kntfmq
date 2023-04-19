@@ -6,6 +6,7 @@ import { fetchTracks } from './lib/fetchTracks';
 import { SavedTrack } from 'spotify-types';
 import { ChoiceButton } from './components/ChoiceButton';
 import swal from 'sweetalert';
+import { AlbumCover } from './components/AlbumCover';
 
 const pickRandomTrack = (tracks: SavedTrack[]) => {
   return tracks[Math.floor(Math.random() * tracks.length)]!;
@@ -76,12 +77,25 @@ const App = () => {
         )}
       </div>
       <div className="App-buttons">
-        {trackChoices.map(track => (
-          <ChoiceButton
-            track={track.track}
-            onClick={() => checkAnswer(track)}
-          />
-        ))}
+        <table>
+          <tr>
+            {trackChoices.map(track => (
+              <td>
+                <AlbumCover track={track.track} />
+              </td>
+            ))}
+          </tr>
+          <tr>
+            {trackChoices.map(track => (
+              <td>
+                <ChoiceButton
+                  track={track.track}
+                  onClick={() => checkAnswer(track)}
+                />
+              </td>
+            ))}
+          </tr>
+        </table>
       </div>
     </div>
   );
