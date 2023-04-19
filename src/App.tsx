@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query'
 import { fetchTracks } from './lib/fetchTracks';
+import swal from 'sweetalert';
 
 const App = () => {
   const trackUrls = [
@@ -31,6 +32,13 @@ const App = () => {
 
   console.log(tracks?.length);
 
+  const checkAnswer = (id) => {
+    console.log(id);
+    if (id == trackIndex) {
+      swal('Bravo', 'Sous-titre', 'success');
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -47,16 +55,16 @@ const App = () => {
         }
       </div>
       <div className="App-buttons">
-        <button>{track1?.track.name}</button>
-        <button>{track2?.track.name}</button>
-        <button>{track3?.track.name}</button>
+        <button onClick={() => checkAnswer(0)}>{track1?.track.name}</button>
+        <button onClick={() => checkAnswer(1)}>{track2?.track.name}</button>
+        <button onClick={() => checkAnswer(2)}>{track3?.track.name}</button>
       </div>
     </div>
   );
 };
 
 const AlbumCover = ({ track }) =>  {
-  const src = track.track.album.images[0].url; // A changer ;)
+  const src = track.track.album.images[0].url;
   return (
       <img src={src} style={{ width: 400, height: 400 }} />
   );
