@@ -35,6 +35,8 @@ const App = () => {
   const checkAnswer = id => {
     if (id == trackIndex) {
       swal('Bravo', 'Sous-titre', 'success');
+    } else {
+      swal('Alerte !!', 'Ceci est une alerte', 'error');
     }
   };
 
